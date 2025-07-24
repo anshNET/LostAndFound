@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TLAFModelStoreContainer" CdmEntityContainer="TLAFEntities">
+    <EntitySetMapping Name="InfoUsers">
+      <EntityTypeMapping TypeName="TLAFModel.InfoUser">
+        <MappingFragment StoreEntitySet="InfoUsers">
+          <ScalarProperty Name="UserSalt" ColumnName="UserSalt" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPass" ColumnName="UserPass" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Rol" ColumnName="Rol" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoundObjects">
+      <EntityTypeMapping TypeName="TLAFModel.FoundObject">
+        <MappingFragment StoreEntitySet="FoundObjects">
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="ContactState" ColumnName="ContactState" />
+          <ScalarProperty Name="SecurityQuestion" ColumnName="SecurityQuestion" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Img" ColumnName="Img" />
+          <ScalarProperty Name="CityTownRoad" ColumnName="CityTownRoad" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="LocationObservations" ColumnName="LocationObservations" />
+          <ScalarProperty Name="MapLocation" ColumnName="MapLocation" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Observations" ColumnName="Observations" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="SerialID" ColumnName="SerialID" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="UserIdreported" ColumnName="UserIdreported" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LostAndFoundObjects">
+      <EntityTypeMapping TypeName="TLAFModel.LostAndFoundObject">
+        <MappingFragment StoreEntitySet="LostAndFoundObject">
+          <ScalarProperty Name="ContactNameuser" ColumnName="ContactNameuser" />
+          <ScalarProperty Name="ObjectIDFound" ColumnName="ObjectIDFound" />
+          <ScalarProperty Name="ObjectIDLost" ColumnName="ObjectIDLost" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="UserIdreportFound" ColumnName="UserIdreportFound" />
+          <ScalarProperty Name="UserIdreportedLost" ColumnName="UserIdreportedLost" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LostObjects">
+      <EntityTypeMapping TypeName="TLAFModel.LostObject">
+        <MappingFragment StoreEntitySet="LostObjects">
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="ContactState" ColumnName="ContactState" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Img" ColumnName="Img" />
+          <ScalarProperty Name="CityTownRoad" ColumnName="CityTownRoad" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="LocationObservations" ColumnName="LocationObservations" />
+          <ScalarProperty Name="MapLocation" ColumnName="MapLocation" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Observations" ColumnName="Observations" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="SerialID" ColumnName="SerialID" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Brand" ColumnName="Brand" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="UserIdreported" ColumnName="UserIdreported" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Files">
+      <EntityTypeMapping TypeName="TLAFModel.File">
+        <MappingFragment StoreEntitySet="File">
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="TLAFModel.Message">
+        <MappingFragment StoreEntitySet="Messages">
+          <ScalarProperty Name="ShowMsgUserId2" ColumnName="ShowMsgUserId2" />
+          <ScalarProperty Name="ShowMsgUserId1" ColumnName="ShowMsgUserId1" />
+          <ScalarProperty Name="LostObjectId" ColumnName="LostObjectId" />
+          <ScalarProperty Name="emailAddressUserDontRegis" ColumnName="emailAddressUserDontRegis" />
+          <ScalarProperty Name="dateMessage" ColumnName="dateMessage" />
+          <ScalarProperty Name="FoundObjectId" ColumnName="FoundObjectId" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="UserIdDest" ColumnName="UserIdDest" />
+          <ScalarProperty Name="UserIdSent" ColumnName="UserIdSent" />
+          <ScalarProperty Name="Message1" ColumnName="Message" />
+          <ScalarProperty Name="NewMessage" ColumnName="NewMessage" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="TLAFModel.Setting">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="EmailMsgs" ColumnName="EmailMsgs" />
+          <ScalarProperty Name="SendMsgLoUserReg" ColumnName="SendMsgLoUserReg" />
+          <ScalarProperty Name="SendMsgLoUserNR" ColumnName="SendMsgLoUserNR" />
+          <ScalarProperty Name="SendMsgFoUserReg" ColumnName="SendMsgFoUserReg" />
+          <ScalarProperty Name="SendMsgFoUserNR" ColumnName="SendMsgFoUserNR" />
+          <ScalarProperty Name="SendPass" ColumnName="SendPass" />
+          <ScalarProperty Name="ChangePass" ColumnName="ChangePass" />
+          <ScalarProperty Name="DeleteUser" ColumnName="DeleteUser" />
+          <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+          <ScalarProperty Name="NewUser" ColumnName="NewUser" />
+          <ScalarProperty Name="DeleteObject" ColumnName="DeleteObject" />
+          <ScalarProperty Name="EditObject" ColumnName="EditObject" />
+          <ScalarProperty Name="NewObject" ColumnName="NewObject" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,237 @@
+﻿@model ThingsLostAndFound.Models.FoundObject
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete Object</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+    <h4>Data Found Object</h4>
+    <hr />
+    <div class="row">
+    <div class="col-sm-6">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+            @if (Model.Brand != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Brand)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Brand)
+                </dd>
+            }
+            @if (Model.Model != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Model)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Model)
+                </dd>
+            }
+            @if (Model.SerialID != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.SerialID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SerialID)
+                </dd>
+            }
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            @if (Model.Color != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Color)
+                </dt>
+
+                <dd>
+                    <span style="background: @Html.DisplayFor(model => model.Color)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+
+                </dd>
+            }
+            @if (Model.Observations != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Observations)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Observations)
+                </dd>
+            }
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            @if (Model.ZipCode != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.ZipCode)
+                </dt>
+
+                <dd>
+                     @Html.DisplayFor(model => model.ZipCode)
+                </dd>
+            }
+            <dt>
+                @Html.DisplayNameFor(model => model.MapLocation)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MapLocation)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+
+            @if (Model.LocationObservations != null)
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.LocationObservations)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.LocationObservations)
+                </dd>
+            }
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CityTownRoad)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CityTownRoad)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.InfoUser.UserName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.InfoUser.UserName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Img)
+            </dt>
+
+            <dd>
+                @{
+                    if (Model.File.FileName != null)
+                    {
+                        <img src="~/File?id=@Model.File.Id" alt="picture" class="img-thumbnail" height="62" width="95" />     @*the File controller give the file(picture) from DB using Id*@
+                    }
+                    else
+                    {
+                        @Html.DisplayName("No picture")
+                    }
+                }
+            </dd>
+
+        </dl>
+    </div>
+    <div class="col-sm-6">
+        <h4>Why do you want to delete this object?</h4>
+        @using (Html.BeginForm("Delete", "FoundObjects", FormMethod.Post, new { onsubmit = "return validate();", name = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-actions no-color">
+                <p>Object Solved  <input id="checkObjectSolved" type="checkbox" value = "false" name="checkObjectSolved" class="form-control"></p>
+                <p><label id="labelObjSolved" hidden>Please, tell us the contact name user </label> <input id="nameContact" type="text" name="nameContact" hidden></p>
+                <p>I wanna forget it  <input id="checkUserCreateObject" type="checkbox" value =" false"name="checkUserCreateObject" class="form-control"></p>
+                @Html.Hidden("idUser", Model.UserIdreported)
+                <input type="submit" value="Delete" class="btn btn-success" />
+            </div>
+        }
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index",null, new {@class ="btn btn-info" })
+</div>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#checkObjectSolved").on('click', function () {
+                if (checkObjectSolved.checked == true) {
+                    $("#nameContact").show();
+                    $("#labelObjSolved").show();
+                } else {
+                    $("#nameContact").hide();
+                    $("#labelObjSolved").hide();
+                }
+            });
+        });
+    </script>
+    <script src="@Url.Content("~/Scripts/validateDeleteObject.js")"></script>
+      
+
+
+        @*function validate() {
+            if ((checkObjectSolved.checked == false) && (checkUserCreateObject.checked == false)) {
+                alert('Please check at least one of the option.');
+                return false;
+            }
+            else {
+                if ((checkObjectSolved.checked == true) && (checkUserCreateObject.checked == false)) {
+                    if (document.forms["form"]["nameContact"].value == "") {
+                        alert('Please write the contact name');
+                        return false;
+                    }
+                    return true;
+                }
+                else {
+                    if ((checkObjectSolved.checked == false) && (checkUserCreateObject.checked == true)) {
+                        return true; //checkUserCreateObject I wanna forget it
+                    } else {
+                        alert('Please check only one of the option.');
+                        return false;
+                    }
+                }
+
+            }
+        }*@
+
+}

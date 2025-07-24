@@ -1,0 +1,43 @@
+﻿@model ThingsLostAndFound.Models.IndexViewModel
+
+<html>
+<body>
+    <ul>
+        @Html.Partial("_ShowMessages", Model)
+    </ul>
+
+    <!-- pager -->
+    @if (Model.Pager.EndPage > 1)
+            {
+        <ul class="pagination">
+            @if (Model.Pager.CurrentPage > 1)
+            {
+                <li>
+                    <a href="/Messages/ShowMessages/?id=@ViewBag.id">First</a>
+                </li>
+                        <li>
+                            <a href="/Messages/ShowMessages/?id=@ViewBag.id&page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+                        </li>
+            }
+
+            @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+            {
+                <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                    <a href="/Messages/ShowMessages/?id=@ViewBag.id&page=@page">@page</a>
+                </li>
+            }
+
+            @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+            {
+                <li>
+                    <a href="/Messages/ShowMessages/?id=@ViewBag.id&page=@(Model.Pager.CurrentPage + 1)">Next</a>
+                </li>
+                        <li>
+                            <a href="/Messages/ShowMessages/?id=@ViewBag.id&page=@(Model.Pager.TotalPages)">Last</a>
+                        </li>
+            }
+        </ul>
+    }
+    <hr />
+</body>
+</html>

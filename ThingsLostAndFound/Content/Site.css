@@ -1,0 +1,110 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-color: #F5F5DC;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+/*override it in the Site.css file instead of changing the base bootstrap css file itself*/
+.navbar {
+    font-family:  Arial, Helvetica, sans-serif;
+}
+.navbar-inverse {
+  background-color: #ffd800;
+  border-color: #080808;
+  font-family: Euphemia
+}
+.navbar-inverse .navbar-brand {
+  color: #080808;
+  font-family: 'Comic Sans MS';
+  /*background:  url('Images/logoTLAF.png') no-repeat;*/
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: #ff0000; /* When It click it */
+  background-color: transparent;
+}
+.navbar-inverse .navbar-text {
+  color: #ff0000;
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #080808;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #2af30b;
+  background-color: #080808;
+}
+.dropdown-menu {
+  background-color: #ffd800;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #080808;
+}
+/* news styles */
+/* Home Page*/
+.searchBtn
+{
+    background: url('Images/Search Icon.png') no-repeat;
+    border: none;
+    padding: 45px 60px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+.loginBtn
+{
+    background: url('Images/Login.png') no-repeat;
+    border: none;
+    padding: 45px 60px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+.createReportBtn
+{
+    background: url('Images/CreateReport.png') no-repeat;
+    border: none;
+    padding: 45px 45px;
+    text-indent: -9999px;
+    display: inline-block;
+}
+/* End Home Page*/
+
+/* Modal, in details objets*/
+.modal-content {
+  position: fixed;
+  background-color: #ffffff;
+  border: 1px solid #999999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  outline: none;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+}
+.modal-body {
+  position: relative;
+  padding: 20px;
+}

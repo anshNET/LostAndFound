@@ -1,0 +1,40 @@
+﻿@{string mapsKey = System.Configuration.ConfigurationManager.AppSettings["MapsKey"]; } @* Read the MapsKey value from a config file out of my project, so avoid to upload this inromation to GitHub*@
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=@mapsKey"></script>
+@*@model ThingsLostAndFound.Models.InfoMarkerFoundObject*@
+@model IEnumerable<ThingsLostAndFound.Models.InfoMarkerFoundObject>
+@using System.Threading;
+@using System.Globalization;
+@{
+    ViewBag.Title = "Found Objects Map";
+    Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US"); //for change , by . in Lat and Log
+}
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Found Objects Map</title>
+</head>
+<body>
+    <h2>Found Object Map</h2>
+    <div>
+        <div id="map_canvas" style="height: 500px; width: 900px;"></div>
+    </div>
+</body>
+</html>
+<style>
+    .infoDiv {
+        height: 200px;
+        width: 300px;
+        -webkit-user-select: none;
+        background-color: red;
+    }
+</style>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="@Url.Content("~/Scripts/mapInit.js")"></script>
+    <script src="@Url.Content("~/Scripts/mapShowMarkersFO.js")"></script>
+    <script type="text/javascript">
+        var objectList = @(Html.Raw(Json.Encode(Model)));  // pass the model (list of objects) to script
+        showMarkersFO(objectList);
+    </script>
+}

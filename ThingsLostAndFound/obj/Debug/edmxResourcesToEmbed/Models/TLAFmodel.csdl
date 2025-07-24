@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TLAFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="InfoUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserPass" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Rol" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="FoundObjects" Relationship="TLAFModel.FK_FoundObjects_ToTable" FromRole="InfoUser" ToRole="FoundObject" />
+    <NavigationProperty Name="LostObjects" Relationship="TLAFModel.FK_LostObjects_ToTable" FromRole="InfoUser" ToRole="LostObject" />
+    <NavigationProperty Name="Messages" Relationship="TLAFModel.FK_Messages_ToTable" FromRole="InfoUser" ToRole="Message" />
+    <NavigationProperty Name="Messages1" Relationship="TLAFModel.FK_Messages_ToTable_1" FromRole="InfoUser" ToRole="Message" />
+    <NavigationProperty Name="LostAndFoundObjects" Relationship="TLAFModel.FK_LostAndFoundObject_ToTable_2" FromRole="InfoUser" ToRole="LostAndFoundObject" />
+    <NavigationProperty Name="LostAndFoundObjects1" Relationship="TLAFModel.FK_LostAndFoundObject_ToTable_3" FromRole="InfoUser" ToRole="LostAndFoundObject" />
+    <Property Name="UserSalt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="TLAFEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="InfoUsers" EntityType="Self.InfoUser" />
+    <EntitySet Name="FoundObjects" EntityType="TLAFModel.FoundObject" />
+    <EntitySet Name="LostAndFoundObjects" EntityType="TLAFModel.LostAndFoundObject" />
+    <EntitySet Name="LostObjects" EntityType="TLAFModel.LostObject" />
+    <AssociationSet Name="FK_FoundObjects_ToTable" Association="TLAFModel.FK_FoundObjects_ToTable">
+      <End Role="InfoUser" EntitySet="InfoUsers" />
+      <End Role="FoundObject" EntitySet="FoundObjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LostObjects_ToTable" Association="TLAFModel.FK_LostObjects_ToTable">
+      <End Role="InfoUser" EntitySet="InfoUsers" />
+      <End Role="LostObject" EntitySet="LostObjects" />
+    </AssociationSet>
+    <EntitySet Name="Files" EntityType="TLAFModel.File" />
+    <AssociationSet Name="FK_FoundObjects_ToTable_1" Association="TLAFModel.FK_FoundObjects_ToTable_1">
+      <End Role="File" EntitySet="Files" />
+      <End Role="FoundObject" EntitySet="FoundObjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LostObjects_ToTable_1" Association="TLAFModel.FK_LostObjects_ToTable_1">
+      <End Role="File" EntitySet="Files" />
+      <End Role="LostObject" EntitySet="LostObjects" />
+    </AssociationSet>
+    <EntitySet Name="Messages" EntityType="TLAFModel.Message" />
+    <AssociationSet Name="FK_Messages_ToTable_2" Association="TLAFModel.FK_Messages_ToTable_2">
+      <End Role="FoundObject" EntitySet="FoundObjects" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_ToTable" Association="TLAFModel.FK_Messages_ToTable">
+      <End Role="InfoUser" EntitySet="InfoUsers" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_ToTable_1" Association="TLAFModel.FK_Messages_ToTable_1">
+      <End Role="InfoUser" EntitySet="InfoUsers" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_ToTable_3" Association="TLAFModel.FK_Messages_ToTable_3">
+      <End Role="LostObject" EntitySet="LostObjects" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LostAndFoundObject_ToTable_2" Association="TLAFModel.FK_LostAndFoundObject_ToTable_2">
+      <End Role="InfoUser" EntitySet="InfoUsers" />
+      <End Role="LostAndFoundObject" EntitySet="LostAndFoundObjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LostAndFoundObject_ToTable_3" Association="TLAFModel.FK_LostAndFoundObject_ToTable_3">
+      <End Role="InfoUser" EntitySet="InfoUsers" />
+      <End Role="LostAndFoundObject" EntitySet="LostAndFoundObjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LostAndFoundObject_ToTable_" Association="TLAFModel.FK_LostAndFoundObject_ToTable_">
+      <End Role="FoundObject" EntitySet="FoundObjects" />
+      <End Role="LostAndFoundObject" EntitySet="LostAndFoundObjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LostAndFoundObject_ToTable_1" Association="TLAFModel.FK_LostAndFoundObject_ToTable_1">
+      <End Role="LostObject" EntitySet="LostObjects" />
+      <End Role="LostAndFoundObject" EntitySet="LostAndFoundObjects" />
+    </AssociationSet>
+    <EntitySet Name="Settings" EntityType="TLAFModel.Setting" />
+  </EntityContainer>
+  <EntityType Name="FoundObject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserIdreported" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Brand" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="SerialID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Observations" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MapLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationObservations" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CityTownRoad" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Img" Type="Boolean" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="InfoUser" Relationship="TLAFModel.FK_FoundObjects_ToTable" FromRole="FoundObject" ToRole="InfoUser" />
+    <Property Name="FileId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="File" Relationship="TLAFModel.FK_FoundObjects_ToTable_1" FromRole="FoundObject" ToRole="File" />
+    <Property Name="SecurityQuestion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactState" Type="Boolean" />
+    <NavigationProperty Name="Messages" Relationship="TLAFModel.FK_Messages_ToTable_2" FromRole="FoundObject" ToRole="Message" />
+    <NavigationProperty Name="LostAndFoundObjects" Relationship="TLAFModel.FK_LostAndFoundObject_ToTable_" FromRole="FoundObject" ToRole="LostAndFoundObject" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LostAndFoundObject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserIdreportedLost" Type="Int32" />
+    <Property Name="UserIdreportFound" Type="Int32" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ObjectIDLost" Type="Int32" />
+    <Property Name="ObjectIDFound" Type="Int32" />
+    <Property Name="ContactNameuser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="InfoUser" Relationship="TLAFModel.FK_LostAndFoundObject_ToTable_2" FromRole="LostAndFoundObject" ToRole="InfoUser" />
+    <NavigationProperty Name="InfoUser1" Relationship="TLAFModel.FK_LostAndFoundObject_ToTable_3" FromRole="LostAndFoundObject" ToRole="InfoUser" />
+    <NavigationProperty Name="FoundObject" Relationship="TLAFModel.FK_LostAndFoundObject_ToTable_" FromRole="LostAndFoundObject" ToRole="FoundObject" />
+    <NavigationProperty Name="LostObject" Relationship="TLAFModel.FK_LostAndFoundObject_ToTable_1" FromRole="LostAndFoundObject" ToRole="LostObject" />
+  </EntityType>
+  <EntityType Name="LostObject">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserIdreported" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Brand" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="SerialID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Observations" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MapLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationObservations" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="CityTownRoad" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Img" Type="Boolean" />
+    <Property Name="State" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="InfoUser" Relationship="TLAFModel.FK_LostObjects_ToTable" FromRole="LostObject" ToRole="InfoUser" />
+    <Property Name="FileId" Type="Int32" Nullable="false" />
+    <Property Name="ContactState" Type="Boolean" />
+    <NavigationProperty Name="File" Relationship="TLAFModel.FK_LostObjects_ToTable_1" FromRole="LostObject" ToRole="File" />
+    <NavigationProperty Name="Messages" Relationship="TLAFModel.FK_Messages_ToTable_3" FromRole="LostObject" ToRole="Message" />
+    <NavigationProperty Name="LostAndFoundObjects" Relationship="TLAFModel.FK_LostAndFoundObject_ToTable_1" FromRole="LostObject" ToRole="LostAndFoundObject" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_FoundObjects_ToTable">
+    <End Type="TLAFModel.InfoUser" Role="InfoUser" Multiplicity="1" />
+    <End Type="TLAFModel.FoundObject" Role="FoundObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FoundObject">
+        <PropertyRef Name="UserIdreported" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LostObjects_ToTable">
+    <End Type="TLAFModel.InfoUser" Role="InfoUser" Multiplicity="1" />
+    <End Type="TLAFModel.LostObject" Role="LostObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LostObject">
+        <PropertyRef Name="UserIdreported" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="File">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContentType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="FileType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="FoundObjects" Relationship="TLAFModel.FK_FoundObjects_ToTable_1" FromRole="File" ToRole="FoundObject" />
+    <NavigationProperty Name="LostObjects" Relationship="TLAFModel.FK_LostObjects_ToTable_1" FromRole="File" ToRole="LostObject" />
+  </EntityType>
+  <Association Name="FK_FoundObjects_ToTable_1">
+    <End Type="TLAFModel.File" Role="File" Multiplicity="1" />
+    <End Type="TLAFModel.FoundObject" Role="FoundObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="File">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FoundObject">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LostObjects_ToTable_1">
+    <End Type="TLAFModel.File" Role="File" Multiplicity="1" />
+    <End Type="TLAFModel.LostObject" Role="LostObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="File">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LostObject">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewMessage" Type="Boolean" />
+    <Property Name="Message1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserIdSent" Type="Int32" />
+    <Property Name="UserIdDest" Type="Int32" />
+    <Property Name="subject" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FoundObjectId" Type="Int32" />
+    <Property Name="dateMessage" Type="DateTime" Precision="3" />
+    <Property Name="emailAddressUserDontRegis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LostObjectId" Type="Int32" />
+    <NavigationProperty Name="FoundObject" Relationship="TLAFModel.FK_Messages_ToTable_2" FromRole="Message" ToRole="FoundObject" />
+    <NavigationProperty Name="InfoUser" Relationship="TLAFModel.FK_Messages_ToTable" FromRole="Message" ToRole="InfoUser" />
+    <NavigationProperty Name="InfoUser1" Relationship="TLAFModel.FK_Messages_ToTable_1" FromRole="Message" ToRole="InfoUser" />
+    <NavigationProperty Name="LostObject" Relationship="TLAFModel.FK_Messages_ToTable_3" FromRole="Message" ToRole="LostObject" />
+    <Property Name="ShowMsgUserId1" Type="Int32" />
+    <Property Name="ShowMsgUserId2" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_Messages_ToTable_2">
+    <End Type="TLAFModel.FoundObject" Role="FoundObject" Multiplicity="0..1" />
+    <End Type="TLAFModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoundObject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="FoundObjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_ToTable">
+    <End Type="TLAFModel.InfoUser" Role="InfoUser" Multiplicity="0..1" />
+    <End Type="TLAFModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="UserIdSent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_ToTable_1">
+    <End Type="TLAFModel.InfoUser" Role="InfoUser" Multiplicity="0..1" />
+    <End Type="TLAFModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="UserIdDest" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_ToTable_3">
+    <End Type="TLAFModel.LostObject" Role="LostObject" Multiplicity="0..1" />
+    <End Type="TLAFModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LostObject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="LostObjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LostAndFoundObject_ToTable_2">
+    <End Type="TLAFModel.InfoUser" Role="InfoUser" Multiplicity="0..1" />
+    <End Type="TLAFModel.LostAndFoundObject" Role="LostAndFoundObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LostAndFoundObject">
+        <PropertyRef Name="UserIdreportedLost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LostAndFoundObject_ToTable_3">
+    <End Type="TLAFModel.InfoUser" Role="InfoUser" Multiplicity="0..1" />
+    <End Type="TLAFModel.LostAndFoundObject" Role="LostAndFoundObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InfoUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LostAndFoundObject">
+        <PropertyRef Name="UserIdreportFound" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LostAndFoundObject_ToTable_">
+    <End Type="TLAFModel.FoundObject" Role="FoundObject" Multiplicity="0..1" />
+    <End Type="TLAFModel.LostAndFoundObject" Role="LostAndFoundObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoundObject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LostAndFoundObject">
+        <PropertyRef Name="ObjectIDFound" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LostAndFoundObject_ToTable_1">
+    <End Type="TLAFModel.LostObject" Role="LostObject" Multiplicity="0..1" />
+    <End Type="TLAFModel.LostAndFoundObject" Role="LostAndFoundObject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LostObject">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LostAndFoundObject">
+        <PropertyRef Name="ObjectIDLost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="NewObject" Type="Boolean" Nullable="false" />
+    <Property Name="EditObject" Type="Boolean" Nullable="false" />
+    <Property Name="DeleteObject" Type="Boolean" Nullable="false" />
+    <Property Name="NewUser" Type="Boolean" Nullable="false" />
+    <Property Name="EditUser" Type="Boolean" Nullable="false" />
+    <Property Name="DeleteUser" Type="Boolean" Nullable="false" />
+    <Property Name="ChangePass" Type="Boolean" Nullable="false" />
+    <Property Name="SendPass" Type="Boolean" Nullable="false" />
+    <Property Name="SendMsgFoUserNR" Type="Boolean" Nullable="false" />
+    <Property Name="SendMsgFoUserReg" Type="Boolean" Nullable="false" />
+    <Property Name="SendMsgLoUserNR" Type="Boolean" Nullable="false" />
+    <Property Name="SendMsgLoUserReg" Type="Boolean" Nullable="false" />
+    <Property Name="EmailMsgs" Type="Boolean" Nullable="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,87 @@
+﻿@model ThingsLostAndFound.Models.InfoUser
+@{
+    ViewBag.Title = "Edit";
+}
+
+<hmtl>
+    <body>
+        <h2>Edit Info</h2>
+        <div class="row">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+
+                    <div class="col-md-8">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.HiddenFor(model => model.UserPass)
+                        @Html.HiddenFor(model => model.Rol)
+                        @Html.HiddenFor(model => model.UserSalt)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Label(Model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.HiddenFor(model => model.UserName)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Date of Register", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Label(Model.Date.ToShortDateString(), htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.HiddenFor(model => model.Date)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-success" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+
+            <div class="col-md-4">
+                <div class="form-horizontal">
+                    <p><b>Security Options:</b></p>
+                    @*<a href="/InfoUsers/ChangePass/@Model.Id" class="Button">ChangePass</a>*@
+                    @Html.ActionLink("Chande Password", "ChangePass", "InfoUsers", new { id = Model.Id }, new { @class = "btn btn-success" })
+                    <p></p>
+                    @*<a href="/InfoUsers/sendNewPassByEmail/@Model.Id" class="Button">Recover your Password</a>*@
+                    @Html.ActionLink("Send New Pass By Email", "sendNewPassByEmail", "InfoUsers", new { id = Model.Id }, new { @class = "btn btn-success" })
+                </div>
+            </div>
+         </div>
+
+         <p></p>
+        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-info" })
+        <hr />
+</body>
+</hmtl>
+
+@section Scripts 
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

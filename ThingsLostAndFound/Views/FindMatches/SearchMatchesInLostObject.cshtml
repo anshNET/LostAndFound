@@ -1,0 +1,120 @@
+﻿@model IEnumerable<ThingsLostAndFound.Models.LostObject>
+
+@{
+    ViewBag.Title = "SearchMatchesInLostObject";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search Matches In Lost Object</h2>
+
+@{
+    int results = (int)ViewData["numberResults"];
+    if (results == 0)
+    {
+        <p>
+            Not Coincidences found
+        </p>
+    }
+    else
+    {
+        <p>
+            Coincidences found in the DB: @ViewData["numberResults"]
+        </p>
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Color)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ZipCode)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CityTownRoad)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Img)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InfoUser.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.File.FileName)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @{
+                            if (item.Color != null)
+                            {
+                                <span style="background: @Html.DisplayFor(modelItem => item.Color) " class="form-control">&nbsp;&nbsp;&nbsp;</span>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ZipCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CityTownRoad)
+                    </td>
+                    <td>
+                        @if (item.Img == true)
+                        {
+                            <img src="~/File?id=@item.FileId" alt="No Img" class="img-thumbnail" height="62" width="92" /> @*the File controller give the file(picture) from DB using Id*@
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InfoUser.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.File.FileName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Contact", "ContactUserLostObject", "UsersContact", new { id = item.Id, title = item.Title, userName = item.InfoUser.UserName }, null)
+                        <p></p>
+                        @Html.ActionLink("Details", "Details", "LostObjects", new { id = item.Id }, null)
+                    </td>
+
+                </tr>
+            }
+        </table>
+  }
+        <div>
+            <a href="/" class="btn btn-info" role="button">Back to Home</a>
+        </div>
+}
+

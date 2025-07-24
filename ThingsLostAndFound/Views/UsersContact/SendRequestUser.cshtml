@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Result Send Request User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<body>
+    <h2>Send Request User</h2>
+    @{
+        <b>@ViewBag.result</b>
+    }
+    <br />
+    <p>
+        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-info" })
+    </p>
+</body>
+</html>
+
+
